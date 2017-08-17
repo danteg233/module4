@@ -3,12 +3,13 @@
 
 <suite name="Suite1">
     <test name="MailTest" parallel="true" thread-count="4">
-        <parameter name="userName" value="strong.tt123"/>
+        <parameter name="userName" value="strong.tt123@yandex.kz"/>
         <parameter name="pass" value="kikiki123"/>
         <parameter name="to" value="isqad.bro@gmail.com"/>
         <parameter name="subj" value="test"/>
+        <parameter name="context" value="a new test"/>
         <classes>
-            <class name="TestClass" />
+            <class name="mail.MailTester" />
         </classes>
     </test>
 
