@@ -1,13 +1,10 @@
 package banana;
 
+import core.AbstractPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class SearchPage extends AbstractPage {
-
-    public SearchPage(WebDriver webDriver) {
-        super(webDriver);
-    }
 
     private static final By INPUT_LOCATOR = By.xpath("//input[@id='lst-ib']");
     private static final By SEARCH_BUTTON_LOCATOR = By.xpath("//input[@name='btnK']");
@@ -23,6 +20,6 @@ public class SearchPage extends AbstractPage {
     public YouTubePage searchVideo(){
         waitForElementEnabled(LINK_LOCATOR);
         webDriver.findElement(LINK_LOCATOR).click();
-        return new YouTubePage(webDriver);
+        return new YouTubePage();
     }
 }

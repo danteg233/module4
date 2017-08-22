@@ -1,5 +1,6 @@
 package banana;
 
+import core.AbstractPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -7,9 +8,6 @@ import org.testng.Assert;
 import static org.testng.AssertJUnit.assertTrue;
 
 public class YouTubePage extends AbstractPage {
-    public YouTubePage(WebDriver webDriver) {
-        super(webDriver);
-    }
 
     private static final By YOU_TUBE_LOGO_LOCATOR = By.xpath("//a[@title='YouTube Home']");
     private static final By VIEWS_LOCATOR = By.xpath(".//*[@class='watch-view-count']");
