@@ -23,17 +23,17 @@ public class WebDriverSingleton {
     }
 
     private static WebDriver init(){
-//        System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
-//        WebDriver driver = new FirefoxDriver();
-        WebDriver driver = null;
-        try{
-            DesiredCapabilities capabilities = DesiredCapabilities.chrome();
-            driver = new RemoteWebDriver(new URL("http://10.12.9.79:4444/wd/hub"), capabilities);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+        System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+        WebDriver driver = new FirefoxDriver();
+//        WebDriver driver = null;
+//        try{
+//            DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+//            driver = new RemoteWebDriver(new URL("http://10.12.9.79:4444/wd/hub"), capabilities);
+//        } catch (MalformedURLException e) {
+//            e.printStackTrace();
+//        }
         driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         return driver;
     }

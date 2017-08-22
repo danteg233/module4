@@ -21,8 +21,12 @@
             <artifactId>selenium-java</artifactId>
             <version>3.5.1</version>
         </dependency>
-
-
+        <!-- https://mvnrepository.com/artifact/ru.yandex.qatools.allure/allure-java-annotations -->
+        <dependency>
+            <groupId>ru.yandex.qatools.allure</groupId>
+            <artifactId>allure-java-annotations</artifactId>
+            <version>1.4.22</version>
+        </dependency>
     </dependencies>
 
 </project>

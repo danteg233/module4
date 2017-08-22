@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public abstract class AbstractPage {
     protected WebDriver webDriver;
-    private static final int wait = 5;
+    private static final int wait = 10;
 
     protected AbstractPage() {
         this.webDriver = WebDriverSingleton.getWebDriverInstance();

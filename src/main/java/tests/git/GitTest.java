@@ -6,7 +6,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-public class GitTestMain {
+public class GitTest {
     private String baseUrl, repositoryName, userName, pass, fileName, fileContext, headerName, commitMessage;
 
     @BeforeClass

@@ -1,14 +1,11 @@
-package mail;
+package tests.mail;
 
 import core.AbstractPage;
 import core.ScreenShoter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
-
-import java.security.Key;
 
 public class YandexDiskPage extends AbstractPage {
 
@@ -35,8 +32,10 @@ public class YandexDiskPage extends AbstractPage {
         waitForElementVisible(DRAG_LOCATOR);
         waitForElementVisible(DROP_LOCATOR);
         new Actions(webDriver).dragAndDrop(webDriver.findElement(DRAG_LOCATOR), webDriver.findElement(DROP_LOCATOR)).build().perform();
+    }
 
-        Assert.assertTrue(isElementPresented(PROGRESSBAR));
+    public boolean isProgressbarPresented(){
+        return isElementPresented(PROGRESSBAR);
     }
 
     public MailPage toMail() throws InterruptedException {

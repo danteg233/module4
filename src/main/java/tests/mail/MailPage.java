@@ -1,4 +1,4 @@
-package mail;
+package tests.mail;
 
 import core.AbstractPage;
 import org.openqa.selenium.By;
@@ -92,7 +92,7 @@ public class MailPage extends AbstractPage {
         assertEquals(webDriver.findElement(By.xpath(".//*[@title='" + to + "']")).getAttribute("title"), to);
         assertEquals(webDriver.findElement(By.xpath(".//*[@title='" + subj + "']")).getText(), subj);
         assertEquals(webDriver.findElement(By.xpath(".//*[@title='" + context + "']")).getText(), context);
-        return By.xpath(".//*[@class ='mail-MessageSnippet-Wrapper']");
+        return By.xpath(".//*[@class='mail-MessageSnippet-Content']");
     }
 
     public void toDisk(){

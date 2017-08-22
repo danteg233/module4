@@ -9,7 +9,7 @@
         <parameter name="subj" value="test"/>
         <parameter name="context" value="a new test"/>
         <classes>
-            <class name="mail.MailTester" />
+            <class name="tests.mail.MailTest" />
         </classes>
     </test>
     <!--<test name="GitTest">-->
@@ -22,7 +22,7 @@
         <!--<parameter name="headerName" value="new file"/>-->
         <!--<parameter name="commitMessage" value="added new txt file"/>-->
         <!--<classes>-->
-            <!--<class name="git.GitTestMain" />-->
+            <!--<class name="tests.git.GitTest-->
         <!--</classes>-->
     <!--</test>-->
 

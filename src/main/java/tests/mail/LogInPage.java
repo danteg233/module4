@@ -1,8 +1,7 @@
-package mail;
+package tests.mail;
 
 import core.AbstractPage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
 

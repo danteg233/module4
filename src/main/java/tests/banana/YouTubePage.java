@@ -1,8 +1,7 @@
-package banana;
+package tests.banana;
 
 import core.AbstractPage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
 import static org.testng.AssertJUnit.assertTrue;
