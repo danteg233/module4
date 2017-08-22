@@ -1,4 +1,4 @@
-package mail;
+package tests.mail;
 
 import core.PropertyFileReader;
 import core.WebDriverSingleton;

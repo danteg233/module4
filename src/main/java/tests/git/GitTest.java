@@ -1,13 +1,10 @@
-package git;
+package tests.git;
 
 import core.WebDriverSingleton;
-import mail.LogInPage;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class GitTestMain {
     private String baseUrl, repositoryName, userName, pass, fileName, fileContext, headerName, commitMessage;

@@ -10,7 +10,6 @@ import org.testng.Assert;
 
 
 public class GitHubPage extends AbstractPage {
-    //TODO: create xpath with parent child sibling
     private static final By NEW_REPOSITORY_BUTTON = By.xpath(".//*[@class='btn btn-sm btn-primary']");
     private static final By REPOSITORY_NAME = By.id("repository_name");
     private static final By INIT_WITH_README_LOCATOR = By.xpath(".//*[@id='repository_auto_init']");
