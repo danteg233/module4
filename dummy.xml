@@ -12,6 +12,9 @@
             <class name="tests.mail.MailTest" />
         </classes>
     </test>
+
+
+
     <!--<test name="GitTest">-->
         <!--<parameter name="baseUrl" value="https://github.com"/>-->
         <!--<parameter name="userName" value="danteg233"/>-->

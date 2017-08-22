@@ -23,7 +23,7 @@ public class WebDriverSingleton {
     }
 
     private static WebDriver init(){
-        System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+//        System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
         WebDriver driver = new FirefoxDriver();
 //        WebDriver driver = null;
 //        try{
