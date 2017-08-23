@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
+import tests.mail.business_objects.EMail;
 
 import static org.testng.Assert.assertEquals;
 
@@ -30,10 +31,10 @@ public class MailPage extends AbstractPage {
     private String to, subj, context;
 
 
-    public MailPage makeDraft(String to, String subj,String context){
-        this.to = to;
-        this.subj = subj;
-        this.context = context;
+    public MailPage makeDraft(EMail eMail){
+        this.to = eMail.getTo();
+        this.subj = eMail.getObj();
+        this.context = eMail.getText();
         webDriver.findElement(WRITE_BUTTON_LOCATOR).click();
         waitForElementPresent(TO_LOCATOR);
         webDriver.findElement(TO_LOCATOR).sendKeys(to);
@@ -42,7 +43,7 @@ public class MailPage extends AbstractPage {
         webDriver.findElement(TEXT_LOCATOR).click();
         webDriver.findElement(TEXT_LOCATOR).sendKeys(context);
         webDriver.findElement(DRAFT_BUTTON).click();
-        if(isElementPresented(SAVE_CHANGES_POP_UP_MENU)){
+        if(isElementPresented(SAVE_CHANGES_POP_UP_MENU)){ //TODO: SHOULD THIS CONDITION BE HERE
             webDriver.findElement(SAVE_BUTTON).click();
         }
         return this;
