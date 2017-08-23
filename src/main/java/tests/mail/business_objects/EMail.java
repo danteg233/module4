@@ -11,6 +11,14 @@ public class EMail {
         this.text = text;
     }
 
+    public EMail() {
+    }
+
+    public EMail(String obj, String text) {
+        this.obj = obj;
+        this.text = text;
+    }
+
     public String getTo() {
         return to;
     }
