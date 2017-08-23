@@ -1,8 +1,7 @@
-package tests.mail;
+package tests.mail.page_objects;
 
 import core.AbstractPage;
 import org.openqa.selenium.By;
-import org.testng.Assert;
 
 
 public class LogInPage extends AbstractPage {

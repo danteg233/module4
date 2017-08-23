@@ -25,8 +25,11 @@ public class NewFilePage extends AbstractPage {
             fileName += (random.nextInt(101));
             fill(fileName, text, header, message);
         }
-        Assert.assertTrue(isElementPresented(By.xpath(".//*[contains(text(), '" + fileName + "')]")));
         return new GitHubPage();
+    }
+
+    public boolean isFileCreated(String fileName){
+        return isElementPresented(By.xpath(".//*[contains(text(), '" + fileName + "')]"));
     }
 
     private void fill(String fileName, String text, String header, String message) {

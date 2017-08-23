@@ -1,4 +1,4 @@
-package tests.mail;
+package tests.mail.page_objects;
 
 import core.AbstractPage;
 import org.openqa.selenium.By;
@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import tests.mail.business_objects.EMail;
+
+import java.util.List;
 
 import static org.testng.Assert.assertEquals;
 
@@ -19,14 +21,13 @@ public class MailPage extends AbstractPage {
     private static final By SAVE_BUTTON = By.xpath(".//*[@data-action='save']");
     private static final By SEND_BUTTON = By.xpath(".//*[@type='submit']");
     private static final By SENT_FOLDER = By.xpath(".//*[@href='#sent']");
-    private static final By EMAIL_SEND_LOCATOR = By.xpath(".//*[@class='mail-Done js-done']");
-    private static final By SEND_FOLDER_EMPTY = By.xpath(".//*[@data-key='box=messages-empty-box']");
+    private static final By EMAIL_SENT_LOCATOR = By.xpath(".//*[@class='mail-Done js-done']");
+    private static final By SENT_FOLDER_EMPTY = By.xpath(".//*[@data-key='box=messages-empty-box']");
     private static final By SELECT_EMAIL_BOX = By.xpath(".//*[@class='_nb-checkbox-flag _nb-checkbox-normal-flag']");
     private static final By DELETE_BUTTON = By.xpath(".//*[@class='svgicon svgicon-mail--MainToolbar-Delete']");
     private static final By PROFILE_BUTTON = By.xpath(".//div[contains(@class, 'ns-view-head-user')]");
     private static final By LOG_OUT_BUTTON = By.xpath(".//*[@class='b-mail-dropdown__item'][last()]");
     private static final By LOG_OUT_CHECK = By.xpath("//*[@class='home-logo__default']");
-    private static final By DISK_LOCATOR = By.xpath(".//*[@data-metrika-id='disk']");
 
     private String to, subj, context;
 
@@ -35,22 +36,26 @@ public class MailPage extends AbstractPage {
         this.to = eMail.getTo();
         this.subj = eMail.getObj();
         this.context = eMail.getText();
+        waitForElementEnabled(WRITE_BUTTON_LOCATOR);
         webDriver.findElement(WRITE_BUTTON_LOCATOR).click();
         waitForElementPresent(TO_LOCATOR);
-        webDriver.findElement(TO_LOCATOR).sendKeys(to);
+        new Actions(webDriver).click(webDriver.findElement(TO_LOCATOR)).sendKeys(to).build().perform();
         webDriver.findElement(SUBJ_LOCATOR).click();
         webDriver.findElement(SUBJ_LOCATOR).sendKeys(subj);
         webDriver.findElement(TEXT_LOCATOR).click();
         webDriver.findElement(TEXT_LOCATOR).sendKeys(context);
         webDriver.findElement(DRAFT_BUTTON).click();
-        if(isElementPresented(SAVE_CHANGES_POP_UP_MENU)){ //TODO: SHOULD THIS CONDITION BE HERE
+        if(isElementPresented(SAVE_CHANGES_POP_UP_MENU)){
             webDriver.findElement(SAVE_BUTTON).click();
         }
         return this;
     }
 
-    public MailPage sendEmail(){
-        By temp = assertEmail();
+    public MailPage sendEmail(EMail eMail) throws Exception {
+        By temp = assertEmail(eMail);
+        if (temp==null){
+            throw new Exception("No email with this parameters");
+        }
         waitForElementPresent(temp);
         webDriver.findElement(temp).click();
         try{
@@ -62,17 +67,14 @@ public class MailPage extends AbstractPage {
         return this;
     }
 
-    public void toSentFolder(){
-        Assert.assertTrue(isElementPresented(EMAIL_SEND_LOCATOR));
-        waitForElementVisible(SENT_FOLDER);
+    public void toSentFolder(EMail eMail) throws InterruptedException {
+        waitForElementEnabled(SENT_FOLDER);
         new Actions(webDriver).click(webDriver.findElement(SENT_FOLDER)).build().perform();
-        assertEmail();
+        assertEmail(eMail);
         waitForElementEnabled(SELECT_EMAIL_BOX);
         webDriver.findElement(SELECT_EMAIL_BOX).click();
         waitForElementEnabled(DELETE_BUTTON);
         webDriver.findElement(DELETE_BUTTON).click();
-        Assert.assertTrue(isElementPresented(SEND_FOLDER_EMPTY));
-
     }
 
     public void logOff(){
@@ -81,24 +83,34 @@ public class MailPage extends AbstractPage {
             new Actions(webDriver).click(button).build().perform();
             waitForElementEnabled(LOG_OUT_BUTTON);
             webDriver.findElement(LOG_OUT_BUTTON).click();
-            Assert.assertTrue(isElementPresented(LOG_OUT_CHECK));
         }catch (Exception e){
             System.out.println(e.getMessage());
             webDriver.quit();
         }
     }
 
-    private By assertEmail(){
-        //TODO : change
-        assertEquals(webDriver.findElement(By.xpath(".//*[@title='" + to + "']")).getAttribute("title"), to);
-        assertEquals(webDriver.findElement(By.xpath(".//*[@title='" + subj + "']")).getText(), subj);
-        assertEquals(webDriver.findElement(By.xpath(".//*[@title='" + context + "']")).getText(), context);
-        return By.xpath(".//*[@class='mail-MessageSnippet-Content']");
+    private By assertEmail(EMail eMail) throws InterruptedException {
+        List<WebElement> tempList = webDriver.findElements(By.xpath(".//*[contains(@class,'ns-view-messages-item-wrap')]"));
+        for(int i=1; i<=tempList.size(); i++){
+            String temp = ".//*[contains(@class,'ns-view-messages-item-wrap')]" + '[' + i + ']';
+            if(webDriver.findElement(By.xpath(temp + "//span[@class='mail-MessageSnippet-Item mail-MessageSnippet-Item_sender js-message-snippet-sender']//*")).getAttribute("title").equalsIgnoreCase(eMail.getTo())
+                    && webDriver.findElement(By.xpath(temp + "//span[@class='mail-MessageSnippet-Item mail-MessageSnippet-Item_subject']//*")).getAttribute("title").equalsIgnoreCase(eMail.getObj())
+                    && webDriver.findElement(By.xpath(temp + "//span[@class='mail-MessageSnippet-Item mail-MessageSnippet-Item_firstline js-message-snippet-firstline']//*")).getAttribute("title").equalsIgnoreCase(eMail.getText())){
+                return By.xpath(temp);
+            }
+        }
+        return null;
     }
 
-    public void toDisk(){
-        new Actions(webDriver).click(webDriver.findElement(DISK_LOCATOR)).build().perform();
+    public boolean isSentLocatorPresented(){
+        return isElementPresented(EMAIL_SENT_LOCATOR);
     }
 
+    public boolean isSentFolderEmpty(){
+        return isElementPresented(SENT_FOLDER_EMPTY);
+    }
 
+    public boolean isLogOutCheckPresented(){
+        return isElementPresented(LOG_OUT_CHECK);
+    }
 }

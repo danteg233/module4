@@ -13,13 +13,16 @@ public class GitLogInPage extends AbstractPage {
     private static final By CONFIRM_LOCATOR = By.xpath(".//*[@class='dashboard-sidebar column one-third']");
 
 
-    public GitHubPage logIn(String userName, String pass){
+    public GitLogInPage logIn(String userName, String pass){
         webDriver.findElement(SIGN_UP_BUTTON).click();
         webDriver.findElement(LOGIN_LOCATOR).sendKeys(userName);
         webDriver.findElement(PASS_LOCATOR).sendKeys(pass);
         webDriver.findElement(SUBMIT_BUTTON).click();
-        Assert.assertTrue(isElementPresented(CONFIRM_LOCATOR));
-        return new GitHubPage();
+        return this;
+    }
+
+    public boolean logInConfirm(){
+        return isElementPresented(CONFIRM_LOCATOR);
     }
 
 }

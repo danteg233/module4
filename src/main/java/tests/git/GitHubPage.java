@@ -19,7 +19,7 @@ public class GitHubPage extends AbstractPage {
     private static final By DELETE_MENU = By.xpath(".//*[@class='facebox-popup']");
     private static final By CONFIRM_DELETE_TEXT = By.xpath(".//*[@class='facebox-popup']//input[@class='form-control input-block']");
     private static final By CONFIRM_DELETE_BUTTON = By.xpath(".//*[@id='facebox']//button[@class='btn btn-block btn-danger']");
-    private static final By PROFILE_BUTTON = By.xpath(".//*[contains(@class, 'header-navlink name tooltipped tooltipped-sw js-menu-target')]");
+    private static final By PROFILE_BUTTON = By.xpath(".//*[@data-ga-click='Header, show menu, icon:avatar']");
     private static final By PROFILE_MENU = By.xpath(".//*[@class='logout-form']");
     private static final By CONFIRM_LOG_OUT_LOCATOR = By.xpath("//*[@class='home-hero-signup js-signup-form']");
 
@@ -37,19 +37,31 @@ public class GitHubPage extends AbstractPage {
         }
         waitForElementEnabled(CREATE_REPOSITORY_BUTTON);
         webDriver.findElement(CREATE_REPOSITORY_BUTTON).click();
-        Assert.assertTrue(isElementPresented(By.xpath(".//*[contains(a, '" + name + "')]")));
         return new NewFilePage();
     }
 
+    public boolean isRepositoryCreated(String name){
+        return isElementPresented(By.xpath(".//*[contains(a, '" + name + "')]"));
+    }
+
+    public boolean isRepositoryDeleted(String name){
+        return isElementPresented(By.xpath(".//span[contains(text(), '" + name +"')]"));
+    }
+
+    public boolean isLogOutConfirmed(){
+        return isElementPresented(CONFIRM_LOG_OUT_LOCATOR);
+    }
+
+
+
     public GitHubPage deleteRepository(String repositoryName){
-        webDriver.findElement(SETTING_BUTTON).click();
+        waitForElementEnabled(SETTING_BUTTON);
+        new Actions(webDriver).click(webDriver.findElement(SETTING_BUTTON)).build().perform();
         waitForElementEnabled(DELETE_BUTTON);
         webDriver.findElement(DELETE_BUTTON).click();
         waitForElementEnabled(DELETE_MENU);
-        webDriver.findElement(CONFIRM_DELETE_TEXT).click();
-        webDriver.findElement(CONFIRM_DELETE_TEXT).sendKeys(repositoryName);
-        webDriver.findElement(CONFIRM_DELETE_BUTTON).click();
-        Assert.assertFalse(isElementPresented(By.xpath(".//span[contains(text(), '" + repositoryName +"')]")));
+        new Actions(webDriver).click(webDriver.findElement(CONFIRM_DELETE_TEXT)).sendKeys(repositoryName).build().perform();
+        new Actions(webDriver).click(webDriver.findElement(CONFIRM_DELETE_BUTTON)).build().perform();
         return this;
     }
 
@@ -57,7 +69,6 @@ public class GitHubPage extends AbstractPage {
         WebElement button = webDriver.findElement(PROFILE_BUTTON);
         new Actions(webDriver).click(button).build().perform();
         webDriver.findElement(PROFILE_MENU).click();
-        Assert.assertTrue(isElementPresented(CONFIRM_LOG_OUT_LOCATOR));
     }
 
 }

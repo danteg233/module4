@@ -1,6 +1,7 @@
 package tests.git;
 
 import core.WebDriverSingleton;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
@@ -25,8 +26,16 @@ public class GitTest {
     @Test
     public void test() throws Exception {
         WebDriverSingleton.getWebDriverInstance().get(baseUrl);
-        GitHubPage gitHubPage = new GitLogInPage().logIn(userName,pass).createRepository(repositoryName).createNewFile(fileName, fileContext, headerName, commitMessage);
-        gitHubPage.deleteRepository(repositoryName).logOff();
+        GitLogInPage gitLogInPage = new GitLogInPage().logIn(userName,pass);
+        Assert.assertTrue(gitLogInPage.logInConfirm());
+
+        GitHubPage gitHubPage = new GitHubPage();
+        gitHubPage.createRepository(repositoryName).createNewFile(fileName, fileContext, headerName, commitMessage);
+        Assert.assertTrue(gitHubPage.isRepositoryCreated(repositoryName));
+        gitHubPage.deleteRepository(repositoryName);
+        Assert.assertFalse(gitHubPage.isRepositoryDeleted(repositoryName));
+        gitHubPage.logOff();
+        Assert.assertTrue(gitHubPage.isLogOutConfirmed());
     }
 
     @AfterClass
