@@ -29,10 +29,11 @@ public class YandexDiskPage extends AbstractPage {
         return this;
     }
 
-    public void lofOff(){
+    public YandexDiskPage lofOff(){
         waitForElementEnabled(PROFILE_TOOLBAR);
         new Actions(webDriver).click(webDriver.findElement(PROFILE_TOOLBAR)).build().perform();
         new Actions(webDriver).click(webDriver.findElement(LOG_OUT_BUTTON)).build().perform();
+        return this;
     }
     public boolean isLoginConfirm(){
         return isElementPresented(CONFIRM_LOGIN);
