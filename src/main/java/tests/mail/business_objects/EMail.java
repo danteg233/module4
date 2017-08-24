@@ -14,11 +14,6 @@ public class EMail {
     public EMail() {
     }
 
-    public EMail(String obj, String text) {
-        this.obj = obj;
-        this.text = text;
-    }
-
     public String getTo() {
         return to;
     }
@@ -29,5 +24,17 @@ public class EMail {
 
     public String getText() {
         return text;
+    }
+
+    public void setTo(String to) {
+        this.to = to;
+    }
+
+    public void setObj(String obj) {
+        this.obj = obj;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 }

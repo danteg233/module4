@@ -2,27 +2,24 @@ package tests.mail;
 
 import core.PropertyFileReader;
 import core.WebDriverSingleton;
-import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import tests.mail.business_objects.EMail;
-import tests.mail.page_objects.LogInPage;
-import tests.mail.page_objects.MailPage;
-import tests.mail.page_objects.YandexDiskPage;
+import tests.mail.business_objects.StaticEmailFactory;
+import tests.mail.page_objects.*;
 
 import static org.testng.Assert.assertTrue;
-import static org.testng.Assert.fail;
 
-public class MailTest {
+public class MailTest{
         private String userName, pass, baseUrl;
         private EMail email;
 
         @BeforeClass
         @Parameters({"to", "subj", "context", "userName", "pass", })
         public void setUp(String to, String subj, String context, String userName, String pass){
-            email = new EMail(to, subj, context);
+            email = StaticEmailFactory.getEmailWithAllFields(to, subj, context);
             PropertyFileReader.read("baseUrl");
             this.userName = userName;
             this.pass = pass;
@@ -37,10 +34,8 @@ public class MailTest {
 
         @Test(description = "send a email", dependsOnMethods = "logInTest")
         public void sendEmailTest() throws Exception {
-            MailPage mailPage = new MailPage();
-            mailPage.makeDraft(email);
-            mailPage.sendEmail(email);
-            assertTrue(mailPage.isSentLocatorPresented());
+            MailPage mailPage = new DraftPage().makeDraft(email);
+            assertTrue(new SendEmailPage().sendEmail(email).isSentLocatorPresented());
             mailPage.toSentFolder(email);
             assertTrue(mailPage.isSentFolderEmpty());
             mailPage.logOff();
