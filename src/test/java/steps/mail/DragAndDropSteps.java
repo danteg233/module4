@@ -1,4 +1,4 @@
-package steps;
+package steps.mail;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -10,12 +10,10 @@ import tests.yandex.business_objects.YandexDiskPage;
 
 public class DragAndDropSteps {
     private DragDropPage dragDropPage;
-    private RestoreElementPage restoreElementPage;
 
-    /*Try @BeforeClass here*/
-
-    @Given("^I have YandexDisk page$")
-    public void iHaveYandexDiskPage(){
+    @Given("^I have YandexDisk main page$")
+    public void iHaveYandexDiskMainPage(){
+        dragDropPage = new DragDropPage();
     }
 
     @And("^I drag one item and move it to the trash$")
@@ -26,6 +24,7 @@ public class DragAndDropSteps {
 
     @And("^I restore file back$")
     public void iRestoreFileBack(){
+        RestoreElementPage restoreElementPage = new RestoreElementPage();
         restoreElementPage.restoreElement();
     }
 
@@ -33,4 +32,7 @@ public class DragAndDropSteps {
     public void iLogOutAndConfirmMyLogOut(){
         Assert.assertTrue(new YandexDiskPage().lofOff().isLoginConfirm(), "Couldn't log out!");
     }
+
+
+
 }
