@@ -27,9 +27,8 @@ public class DragAndDropTest extends AbstractTestNGCucumberTests{
 //        PropertyFileReader.read("yandexDiskBaseUrl");
 //        this.userName = userName;
 //        this.pass = pass;
-//        baseUrl = PropertyFileReader.getBaseUrl();
+//        baseUrl = PropertyFileReader.getValue();
 //    }
-
 
 //    @Test
 //    public void test(){

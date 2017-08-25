@@ -1,6 +1,7 @@
 package core;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -23,9 +24,24 @@ public class WebDriverSingleton {
         return instance = init();
     }
 
+    public static void goTo(String url){
+        if (instance==null){
+            instance = init();
+        }
+        instance.get(url);
+    }
+
     private static WebDriver init(){
-//        System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
-        WebDriver driver = new FirefoxDriver();
+        WebDriver driver = null;
+        PropertyFileReader.read("browser");
+        String browser = PropertyFileReader.getValue();
+        if(browser.equalsIgnoreCase("CHROME")){
+            driver = new ChromeDriver();
+        }
+        if(browser.equalsIgnoreCase("FIREFOX")){
+            driver = new FirefoxDriver();
+        }
+//        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
 //        WebDriver driver = null;
 //        try{
 //            DesiredCapabilities capabilities = DesiredCapabilities.chrome();
@@ -33,7 +49,6 @@ public class WebDriverSingleton {
 //        } catch (MalformedURLException e) {
 //            e.printStackTrace();
 //        }
-        CustomWebDriver webDriver1 = new CustomWebDriver(driver);
         driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         driver.manage().window().maximize();

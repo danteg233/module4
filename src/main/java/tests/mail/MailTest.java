@@ -23,7 +23,7 @@ public class MailTest{
             PropertyFileReader.read("baseUrl");
             this.userName = userName;
             this.pass = pass;
-            baseUrl = PropertyFileReader.getBaseUrl();
+            baseUrl = PropertyFileReader.getValue();
         }
 
         @Test(description = "log in")

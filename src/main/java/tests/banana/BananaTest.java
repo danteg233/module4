@@ -12,7 +12,7 @@ public class BananaTest {
     @BeforeClass
     public void setUp(){
         PropertyFileReader.read("bananaBaseUrl");
-        baseUrl = PropertyFileReader.getBaseUrl();
+        baseUrl = PropertyFileReader.getValue();
     }
 
     @Test

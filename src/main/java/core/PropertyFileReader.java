@@ -5,10 +5,10 @@ import java.util.Properties;
 
 public abstract class PropertyFileReader {
 
-    private static String baseUrl = null;
+    private static String string = null;
 
-    public static String getBaseUrl() {
-        return baseUrl;
+    public static String getValue() {
+        return string;
     }
 
     public static void read(String prop){
@@ -16,9 +16,9 @@ public abstract class PropertyFileReader {
         InputStream input = null;
 
         try{
-            input = new FileInputStream("config.properties");
+            input = new FileInputStream("src/main/resources/config.properties");
             properties.load(input);
-            baseUrl = properties.getProperty(prop);
+            string = properties.getProperty(prop);
 
         }catch (IOException e){
             e.printStackTrace();

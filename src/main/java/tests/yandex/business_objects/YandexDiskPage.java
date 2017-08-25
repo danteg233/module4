@@ -16,11 +16,6 @@ public class YandexDiskPage extends AbstractPage {
     private static final By LOG_OUT_BUTTON = By.xpath(".//div[@class='popup2 popup2_theme_normal popup2_direction_bottom-right popup2_visible_yes popup2_target_anchor popup2_autoclosable']//*[@class='menu__list-item'][last()]");
     private static final By LOG_OUT_CONFIRM = By.xpath("//*[@class='home-logo__default']");
 
-    public YandexDiskPage goTo(String url){
-        webDriver.get(url);
-        return this;
-    }
-
     public YandexDiskPage logIn(String login, String pass){
         waitForElementEnabled(LOGIN_LOCATOR);
         new Actions(webDriver).click(webDriver.findElement(LOGIN_LOCATOR)).sendKeys(login).build().perform();
