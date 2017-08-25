@@ -1,7 +1,5 @@
 package steps.mail;
 
-import core.WebDriverSingleton;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -18,8 +16,8 @@ public class YandexDiskSteps {
     }
 
     @And("^I enter ([^\"]*) and ([^\"]*) and click login button$")
-    public void iEnterUserNameAndPassword(String userName, String password) throws Throwable {
-        yandexDiskPage = new YandexDiskPage().logIn(userName, password);
+    public void iEnterUserNameAndPassword(String userName, String password){
+        yandexDiskPage.logIn(userName, password);
     }
 
     @Then("^I should see mail page$")

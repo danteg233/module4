@@ -60,7 +60,9 @@ public class GitHubPage extends AbstractPage {
         waitForElementEnabled(DELETE_BUTTON);
         webDriver.findElement(DELETE_BUTTON).click();
         waitForElementEnabled(DELETE_MENU);
-        new Actions(webDriver).click(webDriver.findElement(CONFIRM_DELETE_TEXT)).sendKeys(repositoryName).build().perform();
+        webDriver.findElement(CONFIRM_DELETE_TEXT).click();
+        webDriver.findElement(CONFIRM_DELETE_TEXT).sendKeys(repositoryName);
+        waitForElementEnabled(CONFIRM_DELETE_BUTTON);
         new Actions(webDriver).click(webDriver.findElement(CONFIRM_DELETE_BUTTON)).build().perform();
         return this;
     }

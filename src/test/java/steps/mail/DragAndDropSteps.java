@@ -1,5 +1,6 @@
 package steps.mail;
 
+import cucumber.api.DataTable;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -30,7 +31,7 @@ public class DragAndDropSteps {
 
     @Then("^I log out and confirm my log out$")
     public void iLogOutAndConfirmMyLogOut(){
-        Assert.assertTrue(new YandexDiskPage().lofOff().isLoginConfirm(), "Couldn't log out!");
+        Assert.assertTrue(new YandexDiskPage().lofOff().isLogOutConfirm(), "Couldn't log out!");
     }
 
 

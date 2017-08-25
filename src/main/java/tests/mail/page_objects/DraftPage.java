@@ -1,6 +1,7 @@
 package tests.mail.page_objects;
 
 import core.AbstractPage;
+import core.ScreenShoter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.Actions;
 import tests.mail.business_objects.EMail;
@@ -28,7 +29,8 @@ public class DraftPage extends AbstractPage {
         webDriver.findElement(TEXT_LOCATOR).sendKeys(eMail.getText());
         webDriver.findElement(DRAFT_BUTTON).click();
         if(isElementPresented(SAVE_CHANGES_POP_UP_MENU)){
-            webDriver.findElement(SAVE_BUTTON).click();
+            waitForElementEnabled(SAVE_BUTTON);
+            new Actions(webDriver).click(webDriver.findElement(SAVE_BUTTON)).build().perform();
         }
         return new MailPage();
     }

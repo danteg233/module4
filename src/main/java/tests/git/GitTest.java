@@ -28,7 +28,6 @@ public class GitTest {
         WebDriverSingleton.getWebDriverInstance().get(baseUrl);
         GitLogInPage gitLogInPage = new GitLogInPage().logIn(userName,pass);
         Assert.assertTrue(gitLogInPage.logInConfirm());
-
         GitHubPage gitHubPage = new GitHubPage();
         gitHubPage.createRepository(repositoryName).createNewFile(fileName, fileContext, headerName, commitMessage);
         Assert.assertTrue(gitHubPage.isRepositoryCreated(repositoryName));
