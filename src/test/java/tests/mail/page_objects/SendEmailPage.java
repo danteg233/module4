@@ -4,7 +4,7 @@ import core.AbstractPage;
 import org.openqa.selenium.By;
 import tests.mail.business_objects.EMail;
 import tests.mail.utils.UtilsClass;
-import tests.reporting.MyLogger;
+import reporting.MyLogger;
 
 public class SendEmailPage extends AbstractPage {
 

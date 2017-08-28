@@ -5,7 +5,9 @@ import core.WebDriverSingleton;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
-import tests.reporting.MyLogger;
+import tests.git.page_objects.GitHubPage;
+import tests.git.page_objects.GitLogInPage;
+import reporting.MyLogger;
 
 public class GitTest {
     private String baseUrl, repositoryName, userName, pass, fileName, fileContext, headerName, commitMessage;

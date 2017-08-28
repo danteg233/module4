@@ -1,4 +1,4 @@
-package yandex.business_objects;
+package tests.yandex.business_objects;
 
 import core.AbstractPage;
 import core.ScreenShoter;

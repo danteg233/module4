@@ -1,8 +1,9 @@
-package mail;
+package steps.mail;
 
 import core.WebDriverSingleton;
 import cucumber.api.java.en.Given;
-import tests.reporting.MyLogger;
+import reporting.MyLogger;
+
 
 public class BackgroundSteps {
     @Given("^I have YandexDisk page as \"([^\"]*)\"$")

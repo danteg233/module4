@@ -1,12 +1,13 @@
-package mail;
+package steps.mail;
 
+import cucumber.api.DataTable;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import org.testng.Assert;
-import yandex.business_objects.DragDropPage;
-import yandex.business_objects.RestoreElementPage;
-import yandex.business_objects.YandexDiskPage;
+import tests.yandex.business_objects.DragDropPage;
+import tests.yandex.business_objects.RestoreElementPage;
+import tests.yandex.business_objects.YandexDiskPage;
 
 public class DragAndDropSteps {
     private DragDropPage dragDropPage;

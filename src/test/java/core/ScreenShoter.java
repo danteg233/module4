@@ -4,6 +4,7 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import reporting.MyLogger;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,6 +19,7 @@ public class ScreenShoter {
             String screenshotName = SCREENSHOTS_NAME_TML + System.nanoTime();
             File copy = new File(screenshotName + ".png");
             FileUtils.copyFile(screenshot, copy);
+            MyLogger.info("Screenshot has been successfully taken");
         } catch (IOException e) {
             e.printStackTrace();
         }

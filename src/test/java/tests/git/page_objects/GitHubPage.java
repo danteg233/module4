@@ -1,12 +1,9 @@
 
-package tests.git;
+package tests.git.page_objects;
 
 import core.AbstractPage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.testng.Assert;
-import tests.reporting.MyLogger;
+import reporting.MyLogger;
 
 
 public class GitHubPage extends AbstractPage {

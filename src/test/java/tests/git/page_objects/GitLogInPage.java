@@ -1,8 +1,7 @@
-package tests.git;
+package tests.git.page_objects;
 
 import core.AbstractPage;
 import org.openqa.selenium.By;
-import org.testng.Assert;
 
 public class GitLogInPage extends AbstractPage {
 

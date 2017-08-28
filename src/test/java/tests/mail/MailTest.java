@@ -8,7 +8,7 @@ import org.testng.annotations.*;
 import tests.mail.business_objects.EMail;
 import tests.mail.business_objects.StaticEmailFactory;
 import tests.mail.page_objects.*;
-import tests.reporting.MyLogger;
+import reporting.MyLogger;
 
 import static org.testng.Assert.assertTrue;
 

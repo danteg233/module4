@@ -2,11 +2,9 @@ package tests.mail.page_objects;
 
 import core.AbstractPage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import tests.mail.business_objects.EMail;
 import tests.mail.utils.UtilsClass;
-import tests.reporting.MyLogger;
+import reporting.MyLogger;
 
 
 public class MailPage extends AbstractPage {

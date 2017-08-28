@@ -1,7 +1,8 @@
-package yandex.business_objects;
+package tests.yandex.business_objects;
 
 import core.AbstractPage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.interactions.Actions;
 
 public class YandexDiskPage extends AbstractPage {
 
