@@ -2,7 +2,11 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Suite1">
-
+    <test name="CucumberTest">
+        <classes>
+            <class name="tests.yandex.DragAndDropTest"/>
+        </classes>
+    </test>
     <test name="MailTest">
         <parameter name="to" value="isqad.bro@gmail.com"/>
         <parameter name="subj" value="test"/>
@@ -13,7 +17,6 @@
             <class name="tests.mail.MailTest" />
         </classes>
     </test>
-
     <test name="GitTest">
         <parameter name="baseUrl" value="https://github.com"/>
         <parameter name="userName" value="danteg233"/>
@@ -27,12 +30,9 @@
             <class name="tests.git.GitTest"/>
         </classes>
     </test>
-
-    <test name="HTTP test">
-        <classes>
-            <class name="tests.http.HttpTest"/>
-        </classes>
-    </test>
-
-
+    <!--<test name="HTTP test">-->
+        <!--<classes>-->
+            <!--<class name="tests.http.HttpTest"/>-->
+        <!--</classes>-->
+    <!--</test>-->
 </suite>
