@@ -1,14 +1,13 @@
-package steps.mail;
+package mail;
 
 import core.WebDriverSingleton;
-import cucumber.api.PendingException;
-import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
-import tests.yandex.business_objects.YandexDiskPage;
+import tests.reporting.MyLogger;
 
 public class BackgroundSteps {
     @Given("^I have YandexDisk page as \"([^\"]*)\"$")
     public void iHaveYandexDiskPageAs(String url) throws Throwable {
+        MyLogger.info("---CUCUMBER TEST---");
         WebDriverSingleton.goTo(url);
     }
 }

@@ -1,9 +1,8 @@
-package tests.yandex.business_objects;
+package yandex.business_objects;
 
 import core.AbstractPage;
 import core.ScreenShoter;
 import org.openqa.selenium.By;
-import org.openqa.selenium.interactions.Actions;
 
 public class DragDropPage extends AbstractPage {
 
@@ -15,12 +14,9 @@ public class DragDropPage extends AbstractPage {
     public DragDropPage dragAndDrop(){
         highlightElement(FIRST_ITEM_LOCATOR);
         highlightElement(TRASH_LOCATOR);
-        ScreenShoter.takeScreenshot();
         unHighlightElement(TRASH_LOCATOR);
         unHighlightElement(FIRST_ITEM_LOCATOR);
-        waitForElementVisible(FIRST_ITEM_LOCATOR);
-        waitForElementVisible(TRASH_LOCATOR);
-        new Actions(webDriver).dragAndDrop(webDriver.findElement(FIRST_ITEM_LOCATOR), webDriver.findElement(TRASH_LOCATOR)).build().perform();
+        dragDrop(FIRST_ITEM_LOCATOR, TRASH_LOCATOR);
         return this;
     }
 

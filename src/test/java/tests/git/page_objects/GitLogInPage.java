@@ -14,10 +14,10 @@ public class GitLogInPage extends AbstractPage {
 
 
     public GitLogInPage logIn(String userName, String pass){
-        webDriver.findElement(SIGN_UP_BUTTON).click();
-        webDriver.findElement(LOGIN_LOCATOR).sendKeys(userName);
-        webDriver.findElement(PASS_LOCATOR).sendKeys(pass);
-        webDriver.findElement(SUBMIT_BUTTON).click();
+        click(SIGN_UP_BUTTON);
+        clickAndSendText(LOGIN_LOCATOR, userName);
+        clickAndSendText(PASS_LOCATOR, pass);
+        click(SUBMIT_BUTTON);
         return this;
     }
 

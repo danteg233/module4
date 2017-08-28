@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import tests.mail.business_objects.EMail;
 import tests.mail.utils.UtilsClass;
+import tests.reporting.MyLogger;
 
 
 public class MailPage extends AbstractPage {
@@ -18,23 +19,18 @@ public class MailPage extends AbstractPage {
     private static final By LOG_OUT_CHECK = By.xpath("//*[@class='home-logo__default']");
 
     public void toSentFolder(EMail eMail){
-        waitForElementEnabled(SENT_FOLDER);
-        new Actions(webDriver).click(webDriver.findElement(SENT_FOLDER)).build().perform();
+        click(SENT_FOLDER);
         UtilsClass.assertEmail(eMail, webDriver);
-        waitForElementEnabled(SELECT_EMAIL_BOX);
-        webDriver.findElement(SELECT_EMAIL_BOX).click();
-        waitForElementEnabled(DELETE_BUTTON);
-        webDriver.findElement(DELETE_BUTTON).click();
+        click(SELECT_EMAIL_BOX);
+        click(DELETE_BUTTON);
     }
 
     public void logOff(){
         try{
-            WebElement button = webDriver.findElement(PROFILE_BUTTON);
-            new Actions(webDriver).click(button).build().perform();
-            waitForElementEnabled(LOG_OUT_BUTTON);
-            webDriver.findElement(LOG_OUT_BUTTON).click();
+            click(PROFILE_BUTTON);
+            click(LOG_OUT_BUTTON);
         }catch (Exception e){
-            System.out.println(e.getMessage());
+            MyLogger.error(e.getMessage());
             webDriver.quit();
         }
     }

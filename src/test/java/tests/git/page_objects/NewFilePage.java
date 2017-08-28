@@ -34,17 +34,13 @@ public class NewFilePage extends AbstractPage {
 
     private void fill(String fileName, String text, String header, String message) {
         webDriver.findElement(NEW_FILE_NAME).clear();
-        webDriver.findElement(NEW_FILE_NAME).click();
-        webDriver.findElement(NEW_FILE_NAME).sendKeys(fileName);
-        webDriver.findElement(TEXT_BOX).click();
-        webDriver.findElement(TEXT_BOX).sendKeys(text);
+        clickAndSendText(NEW_FILE_NAME, fileName);
+        clickAndSendText(TEXT_BOX, text);
         webDriver.findElement(COMMIT_HEADER).clear();
-        webDriver.findElement(COMMIT_HEADER).click();
-        webDriver.findElement(COMMIT_HEADER).sendKeys(header);
+        clickAndSendText(COMMIT_HEADER, header);
         webDriver.findElement(COMMIT_MESSAGE).clear();
-        webDriver.findElement(COMMIT_MESSAGE).click();
-        webDriver.findElement(COMMIT_MESSAGE).sendKeys(message);
-        webDriver.findElement(SUBMIT_BUTTON).click();
+        clickAndSendText(COMMIT_MESSAGE, message);
+        click(SUBMIT_BUTTON);
     }
 
 

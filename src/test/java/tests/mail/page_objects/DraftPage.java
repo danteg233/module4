@@ -19,18 +19,13 @@ public class DraftPage extends AbstractPage {
 
 
     public MailPage makeDraft(EMail eMail){
-        waitForElementEnabled(WRITE_BUTTON_LOCATOR);
-        webDriver.findElement(WRITE_BUTTON_LOCATOR).click();
-        waitForElementPresent(TO_LOCATOR);
-        new Actions(webDriver).click(webDriver.findElement(TO_LOCATOR)).sendKeys(eMail.getTo()).build().perform();
-        webDriver.findElement(SUBJ_LOCATOR).click();
-        webDriver.findElement(SUBJ_LOCATOR).sendKeys(eMail.getObj());
-        webDriver.findElement(TEXT_LOCATOR).click();
-        webDriver.findElement(TEXT_LOCATOR).sendKeys(eMail.getText());
-        webDriver.findElement(DRAFT_BUTTON).click();
+        click(WRITE_BUTTON_LOCATOR);
+        clickAndSendText(TO_LOCATOR, eMail.getTo());
+        clickAndSendText(SUBJ_LOCATOR, eMail.getObj());
+        clickAndSendText(TEXT_LOCATOR, eMail.getText());
+        click(DRAFT_BUTTON);
         if(isElementPresented(SAVE_CHANGES_POP_UP_MENU)){
-            waitForElementEnabled(SAVE_BUTTON);
-            new Actions(webDriver).click(webDriver.findElement(SAVE_BUTTON)).build().perform();
+            click(SAVE_BUTTON);
         }
         return new MailPage();
     }

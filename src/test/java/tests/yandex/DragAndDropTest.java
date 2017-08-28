@@ -1,18 +1,13 @@
-package tests.yandex;
+package yandex;
 
 import core.PropertyFileReader;
+import core.ScreenShoter;
 import core.WebDriverSingleton;
 import cucumber.api.CucumberOptions;
 import cucumber.api.testng.AbstractTestNGCucumberTests;
-import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
+import org.testng.ITestResult;
+import org.testng.annotations.*;
 import tests.mail.page_objects.DraftPage;
-import tests.yandex.business_objects.DragDropPage;
-import tests.yandex.business_objects.RestoreElementPage;
-import tests.yandex.business_objects.YandexDiskPage;
 
 import static org.testng.Assert.assertTrue;
 
@@ -45,6 +40,13 @@ public class DragAndDropTest extends AbstractTestNGCucumberTests{
 //        yandexDiskPage.lofOff();
 //        assertTrue(yandexDiskPage.isLogOutConfirm(), "Couldn't log out from the site");
 //    }
+
+    @AfterMethod
+    public void takeScreenshotOnTestFailure(ITestResult iTestResult){
+        if(iTestResult.getStatus() == ITestResult.FAILURE){
+            ScreenShoter.takeScreenshot();
+        }
+    }
 
     @AfterClass
     public void tearDown() throws Exception {

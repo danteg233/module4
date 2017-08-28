@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
+import tests.reporting.MyLogger;
 
 
 public class GitHubPage extends AbstractPage {
@@ -26,17 +27,17 @@ public class GitHubPage extends AbstractPage {
     public NewFilePage createRepository(String name) throws Exception {
         By temp = By.xpath(".//span[contains(text(), '" + name +"'" + ")]");
         if (isElementPresented(temp)){
-            webDriver.findElement(temp).click();
+            click(temp);
             return new NewFilePage();
         }
-        webDriver.findElement(NEW_REPOSITORY_BUTTON).click();
-        webDriver.findElement(REPOSITORY_NAME).sendKeys(name);
-        webDriver.findElement(INIT_WITH_README_LOCATOR).click();
+        click(NEW_REPOSITORY_BUTTON);
+        clickAndSendText(REPOSITORY_NAME, name);
+        click(INIT_WITH_README_LOCATOR);
         if (isElementPresented(ERROR_MESSAGE)){
+            MyLogger.warn("Repository with this name already exist");
             throw new Exception("Repository with this name already exist");
         }
-        waitForElementEnabled(CREATE_REPOSITORY_BUTTON);
-        webDriver.findElement(CREATE_REPOSITORY_BUTTON).click();
+        click(CREATE_REPOSITORY_BUTTON);
         return new NewFilePage();
     }
 
@@ -55,22 +56,17 @@ public class GitHubPage extends AbstractPage {
 
 
     public GitHubPage deleteRepository(String repositoryName){
-        waitForElementEnabled(SETTING_BUTTON);
-        new Actions(webDriver).click(webDriver.findElement(SETTING_BUTTON)).build().perform();
-        waitForElementEnabled(DELETE_BUTTON);
-        webDriver.findElement(DELETE_BUTTON).click();
+        click(SETTING_BUTTON);
+        click(DELETE_BUTTON);
         waitForElementEnabled(DELETE_MENU);
-        webDriver.findElement(CONFIRM_DELETE_TEXT).click();
-        webDriver.findElement(CONFIRM_DELETE_TEXT).sendKeys(repositoryName);
-        waitForElementEnabled(CONFIRM_DELETE_BUTTON);
-        new Actions(webDriver).click(webDriver.findElement(CONFIRM_DELETE_BUTTON)).build().perform();
+        clickAndSendText(CONFIRM_DELETE_TEXT, repositoryName);
+        click(CONFIRM_DELETE_BUTTON);
         return this;
     }
 
     public void logOff(){
-        WebElement button = webDriver.findElement(PROFILE_BUTTON);
-        new Actions(webDriver).click(button).build().perform();
-        webDriver.findElement(PROFILE_MENU).click();
+        click(PROFILE_BUTTON);
+        click(PROFILE_MENU);
     }
 
 }

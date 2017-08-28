@@ -1,8 +1,7 @@
-package tests.yandex.business_objects;
+package yandex.business_objects;
 
 import core.AbstractPage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.interactions.Actions;
 
 public class YandexDiskPage extends AbstractPage {
 
@@ -17,17 +16,15 @@ public class YandexDiskPage extends AbstractPage {
     private static final By LOG_OUT_CONFIRM = By.xpath("//*[@class='home-logo__default']");
 
     public YandexDiskPage logIn(String login, String pass){
-        waitForElementEnabled(LOGIN_LOCATOR);
-        new Actions(webDriver).click(webDriver.findElement(LOGIN_LOCATOR)).sendKeys(login).build().perform();
-        new Actions(webDriver).click(webDriver.findElement(PASS_LOCATOR)).sendKeys(pass).build().perform();
-        new Actions(webDriver).click(webDriver.findElement(SUBMIT_BUTTON)).build().perform();
+        clickAndSendText(LOGIN_LOCATOR, login);
+        clickAndSendText(PASS_LOCATOR, pass);
+        click(SUBMIT_BUTTON);
         return this;
     }
 
     public YandexDiskPage lofOff(){
-        waitForElementEnabled(PROFILE_TOOLBAR);
-        new Actions(webDriver).click(webDriver.findElement(PROFILE_TOOLBAR)).build().perform();
-        new Actions(webDriver).click(webDriver.findElement(LOG_OUT_BUTTON)).build().perform();
+        click(PROFILE_TOOLBAR);
+        click(LOG_OUT_BUTTON);
         return this;
     }
     public boolean isLoginConfirm(){
