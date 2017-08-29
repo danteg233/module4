@@ -1,5 +1,6 @@
 package core;
 
+import com.epam.reportportal.message.ReportPortalMessage;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -126,6 +127,8 @@ public class Browser {
             String screenshotName = SCREENSHOTS_NAME_TPL + System.nanoTime();
             File copy = new File(screenshotName + ".png");
             FileUtils.copyFile(screenshot, copy);
+            ReportPortalMessage message = new ReportPortalMessage(new File(screenshotName + ".png"), "Screen for report portal");
+            MyLogger.info(message);
             MyLogger.info("Screenshot has been successfully taken");
         } catch (IOException e) {
             e.printStackTrace();

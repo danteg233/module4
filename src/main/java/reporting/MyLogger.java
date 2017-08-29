@@ -17,6 +17,10 @@ public class MyLogger {
         logger.info(message);
     }
 
+    public static void info(Object object){
+        logger.info(object);
+    }
+
     public static void debug(String message) {
         logger.debug(message);
     }
