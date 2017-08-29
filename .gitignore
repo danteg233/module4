@@ -2,6 +2,7 @@
 .allure/
 logs/
 target/
+debug.log
 out/
 *.iml
 screenshots/
