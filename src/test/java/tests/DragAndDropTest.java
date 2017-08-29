@@ -1,17 +1,10 @@
-package tests.yandex;
+package tests;
 
-import core.PropertyFileReader;
-import core.ScreenShoter;
-import core.WebDriverSingleton;
+import core.Browser;
 import cucumber.api.CucumberOptions;
 import cucumber.api.testng.AbstractTestNGCucumberTests;
-import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
-import tests.mail.page_objects.DraftPage;
-import tests.yandex.business_objects.DragDropPage;
-import tests.yandex.business_objects.RestoreElementPage;
-import tests.yandex.business_objects.YandexDiskPage;
 
 import static org.testng.Assert.assertTrue;
 
@@ -48,12 +41,12 @@ public class DragAndDropTest extends AbstractTestNGCucumberTests{
     @AfterMethod
     public void takeScreenshotOnTestFailure(ITestResult iTestResult){
         if(iTestResult.getStatus() == ITestResult.FAILURE){
-            ScreenShoter.takeScreenshot();
+            Browser.takeScreenshot();
         }
     }
 
     @AfterClass
     public void tearDown() throws Exception {
-        WebDriverSingleton.kill();
+        Browser.kill();
     }
 }
