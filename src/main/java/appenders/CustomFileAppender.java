@@ -1,9 +1,11 @@
+package appenders;
+
 import org.apache.log4j.FileAppender;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class CustomAppender extends FileAppender {
+public class CustomFileAppender extends FileAppender {
 
     @Override
     public void setFile(String file) {
@@ -12,6 +14,6 @@ public class CustomAppender extends FileAppender {
 
     private static String prependDate(String filename) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        return dateFormat.format(new Date()) + "_" + filename;
+        return "logs/" + dateFormat.format(new Date()) + "_" + filename;
     }
 }
