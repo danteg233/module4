@@ -2,9 +2,13 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Suite1">
+    <listeners>
+        <listener class-name="com.epam.reportportal.testng.ReportPortalTestNGListener" />
+    </listeners>
+
     <test name="CucumberTest">
         <classes>
-            <class name="tests.yandex.DragAndDropTest"/>
+            <class name="tests.DragAndDropTest"/>
         </classes>
     </test>
     <test name="MailTest">
@@ -14,7 +18,7 @@
         <parameter name="userName" value="strong.tt123@yandex.kz"/>
         <parameter name="pass" value="kikiki123"/>
         <classes>
-            <class name="tests.mail.MailTest" />
+            <class name="tests.MailTest" />
         </classes>
     </test>
     <test name="GitTest">
@@ -27,12 +31,12 @@
         <parameter name="headerName" value="new file"/>
         <parameter name="commitMessage" value="added new txt file"/>
         <classes>
-            <class name="tests.git.GitTest"/>
+            <class name="tests.GitTest"/>
         </classes>
     </test>
-    <!--<test name="HTTP test">-->
-        <!--<classes>-->
-            <!--<class name="tests.http.HttpTest"/>-->
-        <!--</classes>-->
-    <!--</test>-->
+    <test name="HTTP test">
+        <classes>
+            <class name="tests.HttpTest"/>
+        </classes>
+    </test>
 </suite>
