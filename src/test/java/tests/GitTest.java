@@ -1,13 +1,12 @@
-package tests.git;
+package tests;
 
-import core.ScreenShoter;
-import core.WebDriverSingleton;
+import core.Browser;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
-import tests.git.page_objects.GitHubPage;
-import tests.git.page_objects.GitLogInPage;
 import reporting.MyLogger;
+import tests.git.GitHubPage;
+import tests.git.GitLogInPage;
 
 public class GitTest {
     private String baseUrl, repositoryName, userName, pass, fileName, fileContext, headerName, commitMessage;
@@ -28,8 +27,7 @@ public class GitTest {
 
     @Test
     public void test() throws Exception {
-        WebDriverSingleton.getWebDriverInstance().get(baseUrl);
-        GitLogInPage gitLogInPage = new GitLogInPage().logIn(userName,pass);
+        GitLogInPage gitLogInPage = new GitLogInPage().logIn(baseUrl, userName, pass);
         Assert.assertTrue(gitLogInPage.logInConfirm());
         MyLogger.info("---SUCCESSFULLY LOGGED IN---");
         GitHubPage gitHubPage = new GitHubPage();
@@ -46,13 +44,13 @@ public class GitTest {
     @AfterMethod
     public void takeScreenshotOnTestFailure(ITestResult iTestResult){
         if(iTestResult.getStatus() == ITestResult.FAILURE){
-            ScreenShoter.takeScreenshot();
+            Browser.takeScreenshot();
         }
     }
 
     @AfterClass
     public void tearDown() throws InterruptedException {
-        WebDriverSingleton.kill();
+        Browser.kill();
     }
 
 }

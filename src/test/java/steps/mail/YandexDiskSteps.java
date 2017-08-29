@@ -3,7 +3,7 @@ package steps.mail;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
-import tests.yandex.business_objects.YandexDiskPage;
+import tests.yandex.page_objects.YandexDiskPage;
 
 import static org.testng.Assert.assertTrue;
 

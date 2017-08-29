@@ -1,6 +1,7 @@
 package tests.mail.page_objects;
 
 import core.AbstractPage;
+import core.Browser;
 import org.openqa.selenium.By;
 import tests.mail.business_objects.EMail;
 import tests.mail.utils.UtilsClass;
@@ -17,26 +18,26 @@ public class MailPage extends AbstractPage {
     private static final By LOG_OUT_CHECK = By.xpath("//*[@class='home-logo__default']");
 
     public void toSentFolder(EMail eMail){
-        click(SENT_FOLDER);
-        UtilsClass.assertEmail(eMail, webDriver);
-        click(SELECT_EMAIL_BOX);
-        click(DELETE_BUTTON);
+        browser.click(SENT_FOLDER);
+        UtilsClass.assertEmail(eMail, Browser.getWebDriver());
+        browser.click(SELECT_EMAIL_BOX);
+        browser.click(DELETE_BUTTON);
     }
 
     public void logOff(){
         try{
-            click(PROFILE_BUTTON);
-            click(LOG_OUT_BUTTON);
+            browser.click(PROFILE_BUTTON);
+            browser.click(LOG_OUT_BUTTON);
         }catch (Exception e){
             MyLogger.error(e.getMessage());
-            webDriver.quit();
+            Browser.kill();
         }
     }
 
     public boolean isSentFolderEmpty(){
-        return isElementPresented(SENT_FOLDER_EMPTY);
+        return browser.isElementPresented(SENT_FOLDER_EMPTY);
     }
     public boolean isLogOutCheckPresented(){
-        return isElementPresented(LOG_OUT_CHECK);
+        return browser.isElementPresented(LOG_OUT_CHECK);
     }
 }

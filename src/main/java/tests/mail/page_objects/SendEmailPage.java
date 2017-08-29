@@ -1,6 +1,7 @@
 package tests.mail.page_objects;
 
 import core.AbstractPage;
+import core.Browser;
 import org.openqa.selenium.By;
 import tests.mail.business_objects.EMail;
 import tests.mail.utils.UtilsClass;
@@ -12,14 +13,14 @@ public class SendEmailPage extends AbstractPage {
     private static final By EMAIL_SENT_LOCATOR = By.xpath(".//*[@class='mail-Done js-done']");
 
     public SendEmailPage sendEmail(EMail eMail) throws Exception {
-        By temp = UtilsClass.assertEmail(eMail,webDriver);
+        By temp = UtilsClass.assertEmail(eMail, Browser.getWebDriver());
         if (temp==null){
             MyLogger.error("No email with this parameters");
             throw new Exception("No email with this parameters");
         }
-        click(temp);
+        browser.click(temp);
         try{
-            click(SEND_BUTTON);
+            browser.click(SEND_BUTTON);
         }catch (Exception e){
             MyLogger.error(e.getMessage());
         }
@@ -27,6 +28,6 @@ public class SendEmailPage extends AbstractPage {
     }
 
     public boolean isSentLocatorPresented(){
-        return isElementPresented(EMAIL_SENT_LOCATOR);
+        return browser.isElementPresented(EMAIL_SENT_LOCATOR);
     }
 }

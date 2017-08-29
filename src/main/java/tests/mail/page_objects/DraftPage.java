@@ -1,9 +1,7 @@
 package tests.mail.page_objects;
 
 import core.AbstractPage;
-import core.ScreenShoter;
 import org.openqa.selenium.By;
-import org.openqa.selenium.interactions.Actions;
 import tests.mail.business_objects.EMail;
 
 public class DraftPage extends AbstractPage {
@@ -19,13 +17,13 @@ public class DraftPage extends AbstractPage {
 
 
     public MailPage makeDraft(EMail eMail){
-        click(WRITE_BUTTON_LOCATOR);
-        clickAndSendText(TO_LOCATOR, eMail.getTo());
-        clickAndSendText(SUBJ_LOCATOR, eMail.getObj());
-        clickAndSendText(TEXT_LOCATOR, eMail.getText());
-        click(DRAFT_BUTTON);
-        if(isElementPresented(SAVE_CHANGES_POP_UP_MENU)){
-            click(SAVE_BUTTON);
+        browser.click(WRITE_BUTTON_LOCATOR);
+        browser.clickAndSendText(TO_LOCATOR, eMail.getTo());
+        browser.clickAndSendText(SUBJ_LOCATOR, eMail.getObj());
+        browser.clickAndSendText(TEXT_LOCATOR, eMail.getText());
+        browser.click(DRAFT_BUTTON);
+        if(browser.isElementPresented(SAVE_CHANGES_POP_UP_MENU)){
+            browser.click(SAVE_BUTTON);
         }
         return new MailPage();
     }

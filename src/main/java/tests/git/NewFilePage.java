@@ -1,8 +1,8 @@
-package tests.git.page_objects;
+package tests.git;
 
 import core.AbstractPage;
 import org.openqa.selenium.By;
-import tests.git.page_objects.GitHubPage;
+import tests.git.GitHubPage;
 
 import java.util.Random;
 
@@ -18,9 +18,9 @@ public class NewFilePage extends AbstractPage {
 
 
     public GitHubPage createNewFile(String fileName, String text, String header, String message){
-        webDriver.findElement(CREATE_NEW_BUTTON).click();
+        browser.click(CREATE_NEW_BUTTON);
         fill(fileName, text, header, message);
-        while (isElementPresented(ERROR_LOCATOR)){
+        while (browser.isElementPresented(ERROR_LOCATOR)){
             Random random = new Random();
             fileName += (random.nextInt(101));
             fill(fileName, text, header, message);
@@ -29,18 +29,18 @@ public class NewFilePage extends AbstractPage {
     }
 
     public boolean isFileCreated(String fileName){
-        return isElementPresented(By.xpath(".//*[contains(text(), '" + fileName + "')]"));
+        return browser.isElementPresented(By.xpath(".//*[contains(text(), '" + fileName + "')]"));
     }
 
     private void fill(String fileName, String text, String header, String message) {
-        webDriver.findElement(NEW_FILE_NAME).clear();
-        clickAndSendText(NEW_FILE_NAME, fileName);
-        clickAndSendText(TEXT_BOX, text);
-        webDriver.findElement(COMMIT_HEADER).clear();
-        clickAndSendText(COMMIT_HEADER, header);
-        webDriver.findElement(COMMIT_MESSAGE).clear();
-        clickAndSendText(COMMIT_MESSAGE, message);
-        click(SUBMIT_BUTTON);
+        browser.clear(NEW_FILE_NAME);
+        browser.clickAndSendText(NEW_FILE_NAME, fileName);
+        browser.clickAndSendText(TEXT_BOX, text);
+        browser.clear(COMMIT_HEADER);
+        browser.clickAndSendText(COMMIT_HEADER, header);
+        browser.clear(COMMIT_MESSAGE);
+        browser.clickAndSendText(COMMIT_MESSAGE, message);
+        browser.click(SUBMIT_BUTTON);
     }
 
 

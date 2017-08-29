@@ -1,13 +1,15 @@
-package tests.mail;
+package tests;
 
+import core.Browser;
 import core.PropertyFileReader;
-import core.ScreenShoter;
-import core.WebDriverSingleton;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 import tests.mail.business_objects.EMail;
 import tests.mail.business_objects.StaticEmailFactory;
-import tests.mail.page_objects.*;
+import tests.mail.page_objects.DraftPage;
+import tests.mail.page_objects.LogInPage;
+import tests.mail.page_objects.MailPage;
+import tests.mail.page_objects.SendEmailPage;
 import reporting.MyLogger;
 
 import static org.testng.Assert.assertTrue;
@@ -49,12 +51,12 @@ public class MailTest{
         @AfterMethod
         public void takeScreenshotOnTestFailure(ITestResult iTestResult){
             if(iTestResult.getStatus() == ITestResult.FAILURE){
-                ScreenShoter.takeScreenshot();
+                Browser.takeScreenshot();
             }
         }
 
         @AfterClass
         public void tearDown() throws Exception {
-            WebDriverSingleton.kill();
+            Browser.kill();
         }
 }

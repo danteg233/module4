@@ -1,7 +1,6 @@
-package tests.yandex.business_objects;
+package tests.yandex.page_objects;
 
 import core.AbstractPage;
-import core.ScreenShoter;
 import org.openqa.selenium.By;
 
 public class DragDropPage extends AbstractPage {
@@ -12,15 +11,15 @@ public class DragDropPage extends AbstractPage {
 
 
     public DragDropPage dragAndDrop(){
-        highlightElement(FIRST_ITEM_LOCATOR);
-        highlightElement(TRASH_LOCATOR);
-        unHighlightElement(TRASH_LOCATOR);
-        unHighlightElement(FIRST_ITEM_LOCATOR);
-        dragDrop(FIRST_ITEM_LOCATOR, TRASH_LOCATOR);
+        browser.highlightElement(FIRST_ITEM_LOCATOR);
+        browser.highlightElement(TRASH_LOCATOR);
+        browser.unHighlightElement(TRASH_LOCATOR);
+        browser.unHighlightElement(FIRST_ITEM_LOCATOR);
+        browser.dragDrop(FIRST_ITEM_LOCATOR, TRASH_LOCATOR);
         return this;
     }
 
     public boolean isProgressbarPresented(){
-        return isElementPresented(PROGRESSBAR);
+        return browser.isElementPresented(PROGRESSBAR);
     }
 }

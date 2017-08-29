@@ -1,11 +1,10 @@
-package tests.http;
+package tests;
 
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import tests.http.business_objects.User;
 
 public class HttpTest {
     @BeforeTest
@@ -27,10 +26,4 @@ public class HttpTest {
         Assert.assertTrue(headerType.contains("application/json; charset=utf-8"));
     }
 
-    @Test
-    public void httpResponseBody(){
-        Response rp = RestAssured.given().get("/users").andReturn();
-        User[] users = rp.as(User[].class);
-        Assert.assertEquals(users.length, 10);
-    }
 }

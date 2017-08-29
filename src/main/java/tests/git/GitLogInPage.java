@@ -1,4 +1,4 @@
-package tests.git.page_objects;
+package tests.git;
 
 import core.AbstractPage;
 import org.openqa.selenium.By;
@@ -12,16 +12,17 @@ public class GitLogInPage extends AbstractPage {
     private static final By CONFIRM_LOCATOR = By.xpath(".//*[@class='dashboard-sidebar column one-third']");
 
 
-    public GitLogInPage logIn(String userName, String pass){
-        click(SIGN_UP_BUTTON);
-        clickAndSendText(LOGIN_LOCATOR, userName);
-        clickAndSendText(PASS_LOCATOR, pass);
-        click(SUBMIT_BUTTON);
+    public GitLogInPage logIn(String baseUrl, String userName, String pass){
+        browser.goTo(baseUrl);
+        browser.click(SIGN_UP_BUTTON);
+        browser.clickAndSendText(LOGIN_LOCATOR, userName);
+        browser.clickAndSendText(PASS_LOCATOR, pass);
+        browser.click(SUBMIT_BUTTON);
         return this;
     }
 
     public boolean logInConfirm(){
-        return isElementPresented(CONFIRM_LOCATOR);
+        return browser.isElementPresented(CONFIRM_LOCATOR);
     }
 
 }

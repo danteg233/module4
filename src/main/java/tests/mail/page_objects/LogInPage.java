@@ -12,16 +12,15 @@ public class LogInPage extends AbstractPage {
     private static final By CONFIRM_LOGIN = By.xpath(".//*[@class='mail-App-Header']");
 
     public LogInPage logIn(String login, String pass, String baseUrl) throws Exception {
-        MyLogger.info("Going to " + baseUrl);
-        webDriver.get(baseUrl);
-        clickAndSendText(LOGIN_LOCATOR, login);
-        clickAndSendText(PASS_LOCATOR, pass);
-        click(SUBMIT_LOCATOR);
+        browser.goTo(baseUrl);
+        browser.clickAndSendText(LOGIN_LOCATOR, login);
+        browser.clickAndSendText(PASS_LOCATOR, pass);
+        browser.click(SUBMIT_LOCATOR);
         return this;
     }
 
     public boolean isLoginConfirm(){
-        return isElementPresented(CONFIRM_LOGIN);
+        return browser.isElementPresented(CONFIRM_LOGIN);
     }
 
 }

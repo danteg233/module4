@@ -1,5 +1,5 @@
 
-package tests.git.page_objects;
+package tests.git;
 
 import core.AbstractPage;
 import org.openqa.selenium.By;
@@ -23,47 +23,47 @@ public class GitHubPage extends AbstractPage {
 
     public NewFilePage createRepository(String name) throws Exception {
         By temp = By.xpath(".//span[contains(text(), '" + name +"'" + ")]");
-        if (isElementPresented(temp)){
-            click(temp);
+        if (browser.isElementPresented(temp)){
+            browser.click(temp);
             return new NewFilePage();
         }
-        click(NEW_REPOSITORY_BUTTON);
-        clickAndSendText(REPOSITORY_NAME, name);
-        click(INIT_WITH_README_LOCATOR);
-        if (isElementPresented(ERROR_MESSAGE)){
+        browser.click(NEW_REPOSITORY_BUTTON);
+        browser.clickAndSendText(REPOSITORY_NAME, name);
+        browser.click(INIT_WITH_README_LOCATOR);
+        if (browser.isElementPresented(ERROR_MESSAGE)){
             MyLogger.warn("Repository with this name already exist");
             throw new Exception("Repository with this name already exist");
         }
-        click(CREATE_REPOSITORY_BUTTON);
+        browser.click(CREATE_REPOSITORY_BUTTON);
         return new NewFilePage();
     }
 
     public boolean isRepositoryCreated(String name){
-        return isElementPresented(By.xpath(".//*[contains(a, '" + name + "')]"));
+        return browser.isElementPresented(By.xpath(".//*[contains(a, '" + name + "')]"));
     }
 
     public boolean isRepositoryDeleted(String name){
-        return isElementPresented(By.xpath(".//span[contains(text(), '" + name +"')]"));
+        return browser.isElementPresented(By.xpath(".//span[contains(text(), '" + name +"')]"));
     }
 
     public boolean isLogOutConfirmed(){
-        return isElementPresented(CONFIRM_LOG_OUT_LOCATOR);
+        return browser.isElementPresented(CONFIRM_LOG_OUT_LOCATOR);
     }
 
 
 
     public GitHubPage deleteRepository(String repositoryName){
-        click(SETTING_BUTTON);
-        click(DELETE_BUTTON);
-        waitForElementEnabled(DELETE_MENU);
-        clickAndSendText(CONFIRM_DELETE_TEXT, repositoryName);
-        click(CONFIRM_DELETE_BUTTON);
+        browser.click(SETTING_BUTTON);
+        browser.click(DELETE_BUTTON);
+        browser.waitForElementEnabled(DELETE_MENU);
+        browser.clickAndSendText(CONFIRM_DELETE_TEXT, repositoryName);
+        browser.click(CONFIRM_DELETE_BUTTON);
         return this;
     }
 
     public void logOff(){
-        click(PROFILE_BUTTON);
-        click(PROFILE_MENU);
+        browser.click(PROFILE_BUTTON);
+        browser.click(PROFILE_MENU);
     }
 
 }
