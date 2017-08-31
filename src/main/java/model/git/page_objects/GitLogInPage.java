@@ -1,4 +1,4 @@
-package tests.git;
+package model.git.page_objects;
 
 import core.AbstractPage;
 import org.openqa.selenium.By;

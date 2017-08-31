@@ -1,5 +1,5 @@
 
-package tests.git;
+package model.git.page_objects;
 
 import core.AbstractPage;
 import org.openqa.selenium.By;
@@ -21,11 +21,11 @@ public class GitHubPage extends AbstractPage {
     private static final By PROFILE_MENU = By.xpath(".//*[@class='logout-form']");
     private static final By CONFIRM_LOG_OUT_LOCATOR = By.xpath("//*[@class='home-hero-signup js-signup-form']");
 
-    public NewFilePage createRepository(String name) throws Exception {
+    public GitHubPage createRepository(String name) throws Exception {
         By temp = By.xpath(".//span[contains(text(), '" + name +"'" + ")]");
         if (browser.isElementPresented(temp)){
             browser.click(temp);
-            return new NewFilePage();
+            return this;
         }
         browser.click(NEW_REPOSITORY_BUTTON);
         browser.clickAndSendText(REPOSITORY_NAME, name);
@@ -35,7 +35,7 @@ public class GitHubPage extends AbstractPage {
             throw new Exception("Repository with this name already exist");
         }
         browser.click(CREATE_REPOSITORY_BUTTON);
-        return new NewFilePage();
+        return this;
     }
 
     public boolean isRepositoryCreated(String name){
@@ -54,6 +54,7 @@ public class GitHubPage extends AbstractPage {
 
     public GitHubPage deleteRepository(String repositoryName){
         browser.click(SETTING_BUTTON);
+        browser.scrollToElement(DELETE_BUTTON);
         browser.click(DELETE_BUTTON);
         browser.waitForElementEnabled(DELETE_MENU);
         browser.clickAndSendText(CONFIRM_DELETE_TEXT, repositoryName);
@@ -61,9 +62,10 @@ public class GitHubPage extends AbstractPage {
         return this;
     }
 
-    public void logOff(){
+    public GitHubPage logOff(){
         browser.click(PROFILE_BUTTON);
         browser.click(PROFILE_MENU);
+        return this;
     }
 
 }

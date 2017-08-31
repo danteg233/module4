@@ -4,33 +4,30 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import org.testng.Assert;
-import tests.yandex.page_objects.DragDropPage;
-import tests.yandex.page_objects.RestoreElementPage;
-import tests.yandex.page_objects.YandexDiskPage;
+import model.yandex.page_objects.YandexDiskPage;
 
 public class DragAndDropSteps {
-    private DragDropPage dragDropPage;
+    private YandexDiskPage yandexDiskPage;
 
     @Given("^I have YandexDisk main page$")
     public void iHaveYandexDiskMainPage(){
-        dragDropPage = new DragDropPage();
+        yandexDiskPage = new YandexDiskPage();
     }
 
     @And("^I drag one item and move it to the trash$")
     public void iDragOneItemAndMoveItToTheTrash(){
-        dragDropPage.dragAndDrop();
-        Assert.assertTrue(dragDropPage.isProgressbarPresented(), "Couldn't delete a file");
+        yandexDiskPage.dragAndDrop();
+        Assert.assertTrue(yandexDiskPage.isProgressbarPresented(), "Couldn't delete a file");
     }
 
     @And("^I restore file back$")
     public void iRestoreFileBack(){
-        RestoreElementPage restoreElementPage = new RestoreElementPage();
-        restoreElementPage.restoreElement();
+        yandexDiskPage.restoreElement();
     }
 
     @Then("^I log out and confirm my log out$")
     public void iLogOutAndConfirmMyLogOut(){
-        Assert.assertTrue(new YandexDiskPage().lofOff().isLogOutConfirm(), "Couldn't log out!");
+        Assert.assertTrue(yandexDiskPage.lofOff().isLogOutConfirm(), "Couldn't log out!");
     }
 
 

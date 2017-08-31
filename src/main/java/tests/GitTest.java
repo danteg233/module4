@@ -1,12 +1,13 @@
 package tests;
 
 import core.Browser;
+import model.git.page_objects.NewFilePage;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 import reporting.MyLogger;
-import tests.git.GitHubPage;
-import tests.git.GitLogInPage;
+import model.git.page_objects.GitHubPage;
+import model.git.page_objects.GitLogInPage;
 
 public class GitTest {
     private String baseUrl, repositoryName, userName, pass, fileName, fileContext, headerName, commitMessage;
@@ -27,17 +28,15 @@ public class GitTest {
 
     @Test
     public void test() throws Exception {
-        GitLogInPage gitLogInPage = new GitLogInPage().logIn(baseUrl, userName, pass);
-        Assert.assertTrue(gitLogInPage.logInConfirm());
+        Assert.assertTrue(new GitLogInPage().logIn(baseUrl, userName, pass).logInConfirm());
         MyLogger.info("---SUCCESSFULLY LOGGED IN---");
-        GitHubPage gitHubPage = new GitHubPage();
-        gitHubPage.createRepository(repositoryName).createNewFile(fileName, fileContext, headerName, commitMessage);
-        Assert.assertTrue(gitHubPage.isRepositoryCreated(repositoryName));
+        Assert.assertTrue(new GitHubPage().createRepository(repositoryName).isRepositoryCreated(repositoryName));
         MyLogger.info("---CREATED NEW REPOSITORY---");
-        gitHubPage.deleteRepository(repositoryName);
-        Assert.assertFalse(gitHubPage.isRepositoryDeleted(repositoryName));
-        gitHubPage.logOff();
-        Assert.assertTrue(gitHubPage.isLogOutConfirmed());
+        Assert.assertTrue(new NewFilePage().createNewFile(fileName, fileContext, headerName, commitMessage).isFileCreated(fileName));
+        MyLogger.info("---CREATED NEW FILE---");
+        Assert.assertFalse(new GitHubPage().deleteRepository(repositoryName).isRepositoryDeleted(repositoryName));
+        MyLogger.info("---REPOSITORY ---");
+        Assert.assertTrue(new GitHubPage().logOff().isLogOutConfirmed());
         MyLogger.info("---LOGGED OUT---");
     }
 
