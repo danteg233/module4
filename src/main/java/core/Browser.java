@@ -19,8 +19,8 @@ public class Browser {
     private static Browser instance;
 
     private static final int PAGE_LOAD_DEFAULT_TIMEOUT_SECONDS = 15;
-    private static final int IMPLICITLY_DEFAULT_TIMEOUT_SECONDS = 10;
-    private static final int WAIT_ELEMENT_TIMEOUT = 10;
+    private static final int IMPLICITLY_DEFAULT_TIMEOUT_SECONDS = 15;
+    private static final int WAIT_ELEMENT_TIMEOUT = 15;
     private static final String SCREENSHOTS_NAME_TPL = "screenshots/scr";
 
     private Browser(WebDriver webDriver) {
