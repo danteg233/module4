@@ -1,4 +1,4 @@
-package tests.mail.webdriver;
+package webdriver;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

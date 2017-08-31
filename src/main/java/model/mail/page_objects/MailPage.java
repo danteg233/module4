@@ -1,4 +1,4 @@
-package tests.mail.page_objects;
+package model.mail.page_objects;
 
 import core.AbstractPage;
 import core.Browser;
@@ -41,7 +41,7 @@ public class MailPage extends AbstractPage {
 
     public MailPage logOff(){
         try{
-            browser.scrollUp(PROFILE_BUTTON);
+            browser.scrollToElement(PROFILE_BUTTON);
             browser.click(PROFILE_BUTTON);
             browser.click(LOG_OUT_BUTTON);
         }catch (Exception e){
@@ -67,7 +67,7 @@ public class MailPage extends AbstractPage {
     }
 
     public MailPage makeDraft(EMail eMail){
-        browser.scrollUp(WRITE_BUTTON_LOCATOR);
+        browser.scrollToElement(WRITE_BUTTON_LOCATOR);
         browser.click(WRITE_BUTTON_LOCATOR);
         browser.clickAndSendText(TO_LOCATOR, eMail.getTo());
         browser.clickAndSendText(TEXT_LOCATOR, eMail.getText());

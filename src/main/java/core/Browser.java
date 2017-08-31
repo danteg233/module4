@@ -116,9 +116,14 @@ public class Browser {
         new Actions(webDriver).dragAndDrop(webDriver.findElement(item), webDriver.findElement(target)).build().perform();
     }
 
-    public  void goTo(String url){
+    public void goTo(String url){
         MyLogger.info("Going to " + url);
         instance.webDriver.get(url);
+    }
+
+    public void scrollToElement(By locator){
+        WebElement element = webDriver.findElement(locator);
+        ((JavascriptExecutor) webDriver).executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
     public static void takeScreenshot(){
@@ -134,6 +139,7 @@ public class Browser {
             e.printStackTrace();
         }
     }
+
 
     public static void kill(){
         if(instance != null){
