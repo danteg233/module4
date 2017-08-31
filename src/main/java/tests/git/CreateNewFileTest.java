@@ -1,21 +1,20 @@
-package tests;
+package tests.git;
 
 import core.Browser;
-import model.git.page_objects.NewFilePage;
+import model.git.page_objects.GitHubPage;
+import model.git.page_objects.GitLogInPage;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 import reporting.MyLogger;
-import model.git.page_objects.GitHubPage;
-import model.git.page_objects.GitLogInPage;
 
-public class GitTest {
-    private String baseUrl, repositoryName, userName, pass, fileName, fileContext, headerName, commitMessage;
+public class CreateNewFileTest {
+    private String baseUrl, userName, pass, repositoryName, fileName, fileContext, headerName, commitMessage;
 
     @BeforeClass
     @Parameters({"baseUrl", "userName", "pass", "repositoryName", "fileName", "fileContext", "headerName", "commitMessage"})
     public void setUp(String baseUrl, String userName, String pass, String repositoryName, String fileName, String fileContext, String headerName, String commitMessage){
-        MyLogger.info("---GITHUB TEST---");
+        MyLogger.info("---CreateNewFileTest---");
         this.baseUrl = baseUrl;
         this.userName = userName;
         this.pass = pass;
@@ -27,15 +26,20 @@ public class GitTest {
     }
 
     @Test
-    public void test() throws Exception {
+    public void logInTest(){
         Assert.assertTrue(new GitLogInPage().logIn(baseUrl, userName, pass).logInConfirm());
         MyLogger.info("---SUCCESSFULLY LOGGED IN---");
-        Assert.assertTrue(new GitHubPage().createRepository(repositoryName).isRepositoryCreated(repositoryName));
-        MyLogger.info("---CREATED NEW REPOSITORY---");
-        Assert.assertTrue(new NewFilePage().createNewFile(fileName, fileContext, headerName, commitMessage).isFileCreated(fileName));
+    }
+
+
+    @Test(dependsOnMethods = "logInTest")
+    public void createNewFileTest(){
+        Assert.assertTrue(new GitHubPage().chooseRepository(repositoryName).createNewFile(fileName, fileContext, headerName, commitMessage).isFileCreated(fileName));
         MyLogger.info("---CREATED NEW FILE---");
-        Assert.assertFalse(new GitHubPage().deleteRepository(repositoryName).isRepositoryDeleted(repositoryName));
-        MyLogger.info("---REPOSITORY ---");
+    }
+
+    @Test(dependsOnMethods = "createNewFileTest")
+    public void logOutTest(){
         Assert.assertTrue(new GitHubPage().logOff().isLogOutConfirmed());
         MyLogger.info("---LOGGED OUT---");
     }
@@ -51,5 +55,4 @@ public class GitTest {
     public void tearDown() throws InterruptedException {
         Browser.kill();
     }
-
 }
