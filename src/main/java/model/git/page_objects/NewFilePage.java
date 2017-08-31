@@ -1,10 +1,7 @@
-package tests.git;
+package model.git.page_objects;
 
 import core.AbstractPage;
 import org.openqa.selenium.By;
-import tests.git.GitHubPage;
-
-import java.util.Random;
 
 public class NewFilePage extends AbstractPage {
 
@@ -17,15 +14,10 @@ public class NewFilePage extends AbstractPage {
     private static final By ERROR_LOCATOR = By.xpath(".//*[@id='js-flash-container']/div");
 
 
-    public GitHubPage createNewFile(String fileName, String text, String header, String message){
+    public NewFilePage createNewFile(String fileName, String text, String header, String message){
         browser.click(CREATE_NEW_BUTTON);
         fill(fileName, text, header, message);
-        while (browser.isElementPresented(ERROR_LOCATOR)){
-            Random random = new Random();
-            fileName += (random.nextInt(101));
-            fill(fileName, text, header, message);
-        }
-        return new GitHubPage();
+        return this;
     }
 
     public boolean isFileCreated(String fileName){
@@ -40,6 +32,7 @@ public class NewFilePage extends AbstractPage {
         browser.clickAndSendText(COMMIT_HEADER, header);
         browser.clear(COMMIT_MESSAGE);
         browser.clickAndSendText(COMMIT_MESSAGE, message);
+        browser.scrollToElement(SUBMIT_BUTTON);
         browser.click(SUBMIT_BUTTON);
     }
 

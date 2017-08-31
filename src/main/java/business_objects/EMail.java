@@ -1,4 +1,4 @@
-package tests.mail.business_objects;
+package business_objects;
 
 public class EMail {
     private String to;

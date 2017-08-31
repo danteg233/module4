@@ -1,8 +1,7 @@
-package tests.mail.page_objects;
+package model.mail.page_objects;
 
 import core.AbstractPage;
 import org.openqa.selenium.By;
-import reporting.MyLogger;
 
 
 public class LogInPage extends AbstractPage {

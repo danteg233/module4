@@ -1,4 +1,4 @@
-package tests;
+package tests.mail;
 
 import business_objects.EMail;
 import business_objects.StaticEmailFactory;
@@ -7,8 +7,8 @@ import core.PropertyFileReader;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 import reporting.MyLogger;
-import tests.mail.page_objects.LogInPage;
-import tests.mail.page_objects.MailPage;
+import model.mail.page_objects.LogInPage;
+import model.mail.page_objects.MailPage;
 
 import static org.testng.Assert.assertTrue;
 
@@ -34,7 +34,7 @@ public class CreateMailWithFewReceiversTest {
     @Test(dependsOnMethods = "logInTest")
     @Parameters({"fewReceivers", "subj", "context"})
     public void createMailWithFewReceiversTest(String fewReceivers, String subj, String context){
-        MyLogger.info("---CREATING AN EMPTY EMAIL---");
+        MyLogger.info("---CREATING EMAIL WITH FEW RECEIVERS---");
         EMail email = StaticEmailFactory.getEmailWithAllFields(fewReceivers, subj, context);
         assertTrue(new MailPage().makeDraft(email).sendEmail().isSentLocatorPresented());
     }

@@ -1,8 +1,8 @@
-package tests.mail.business_objects;
+package business_objects;
 
 public class StaticEmailFactory {
 
-    public static EMail createSimpleEmail(){
+    private static EMail createSimpleEmail(){
         EMail eMail = new EMail();
         eMail.setTo("noOne@mail.ru");
         eMail.setObj("nothing");
@@ -30,11 +30,20 @@ public class StaticEmailFactory {
         return new EMail(to, subj, context);
     }
 
+
+    public static EMail getEmailWithSameSubjAndText(String to, String text){
+        EMail eMail = createSimpleEmail();
+        eMail.setTo(to);
+        eMail.setText(text);
+        eMail.setObj(text);
+        return eMail;
+    }
+
     public static EMail getEmailWithoutAnyField(){
         EMail eMail = createSimpleEmail();
-        eMail.setTo(" ");
-        eMail.setText(" ");
-        eMail.setText(" ");
+        eMail.setTo("");
+        eMail.setText("");
+        eMail.setObj("");
         return eMail;
     }
 
