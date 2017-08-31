@@ -21,10 +21,10 @@
         <parameter name="sameSubjAndText" value="here's everything same"/>
         <parameter name="fewReceivers" value="isqad.bro@gmail.com, test@mail.ru, asd@mail.ru"/>
         <classes>
-            <class name="tests.mail.CreateAndSendDraftTest" />
-            <class name="tests.mail.CreateAndSendMailTest"/>
-            <class name="tests.mail.CreateMailWithFewReceiversTest"/>
-            <class name="tests.mail.CreateEmptyMailTest"/>
+            <class name="tests.mail.CreateAndSendDraftTestClass" />
+            <class name="tests.mail.CreateAndSendMailTestClass"/>
+            <class name="tests.mail.CreateMailWithFewReceiversTestClass"/>
+            <class name="tests.mail.CreateEmptyMailTestClass"/>
         </classes>
     </test>
 
@@ -38,9 +38,9 @@
         <parameter name="headerName" value="new file"/>
         <parameter name="commitMessage" value="added new txt file"/>
         <classes>
-            <class name="tests.git.CreateRepositoryTest"/>
-            <class name="tests.git.CreateNewFileTest"/>
-            <class name="tests.git.DeleteRepositoryTest"/>
+            <class name="tests.git.CreateRepositoryTestClass"/>
+            <class name="tests.git.CreateNewFileTestClass"/>
+            <class name="tests.git.DeleteRepositoryTestClass"/>
         </classes>
     </test>
 

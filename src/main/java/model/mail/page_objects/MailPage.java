@@ -3,7 +3,7 @@ package model.mail.page_objects;
 import core.AbstractPage;
 import core.Browser;
 import org.openqa.selenium.By;
-import business_objects.EMail;
+import model.business_objects.EMail;
 import utils.UtilsClass;
 import reporting.MyLogger;
 

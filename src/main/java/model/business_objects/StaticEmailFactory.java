@@ -1,4 +1,4 @@
-package business_objects;
+package model.business_objects;
 
 public class StaticEmailFactory {
 
