@@ -11,16 +11,23 @@
             <class name="tests.DragAndDropTest"/>
         </classes>
     </test>
-    <test name="MailTest">
+
+    <test name="Mail Tests">
         <parameter name="to" value="isqad.bro@gmail.com"/>
         <parameter name="subj" value="test"/>
         <parameter name="context" value="a new test"/>
         <parameter name="userName" value="strong.tt123@yandex.kz"/>
         <parameter name="pass" value="kikiki123"/>
+        <parameter name="sameSubjAndText" value="here's everything same"/>
+        <parameter name="fewReceivers" value="isqad.bro@gmail.com, test@mail.ru, asd@mail.ru"/>
         <classes>
-            <class name="tests.MailTest" />
+            <class name="tests.mail.CreateAndSendDraftTest" />
+            <class name="tests.mail.CreateAndSendMailTest"/>
+            <class name="tests.mail.CreateMailWithFewReceiversTest"/>
+            <class name="tests.mail.CreateEmptyMailTest"/>
         </classes>
     </test>
+
     <test name="GitTest">
         <parameter name="baseUrl" value="https://github.com"/>
         <parameter name="userName" value="danteg233"/>
@@ -34,9 +41,11 @@
             <class name="tests.GitTest"/>
         </classes>
     </test>
+
     <test name="HTTP test">
         <classes>
             <class name="tests.HttpTest"/>
         </classes>
     </test>
+
 </suite>
