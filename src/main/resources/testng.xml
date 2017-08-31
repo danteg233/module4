@@ -28,7 +28,7 @@
         </classes>
     </test>
 
-    <test name="GitTest">
+    <test name="GitTests">
         <parameter name="baseUrl" value="https://github.com"/>
         <parameter name="userName" value="danteg233"/>
         <parameter name="pass" value="test123"/>
@@ -38,14 +38,16 @@
         <parameter name="headerName" value="new file"/>
         <parameter name="commitMessage" value="added new txt file"/>
         <classes>
-            <class name="tests.GitTest"/>
+            <class name="tests.git.CreateRepositoryTest"/>
+            <class name="tests.git.CreateNewFileTest"/>
+            <class name="tests.git.DeleteRepositoryTest"/>
         </classes>
     </test>
 
-    <test name="HTTP test">
-        <classes>
-            <class name="tests.HttpTest"/>
-        </classes>
-    </test>
+    <!--<test name="HTTP test">-->
+        <!--<classes>-->
+            <!--<class name="tests.HttpTest"/>-->
+        <!--</classes>-->
+    <!--</test>-->
 
 </suite>
